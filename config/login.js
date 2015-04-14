@@ -1,8 +1,8 @@
 var crypto = require('crypto');
 var rand = require('csprng');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var gravatar = require('gravatar');
-var user = require('./models.js');
+var user = require('./users.js');
 exports.login = function(email,password,callback) {
 	user.find({email: email},function(err,users){
 		if(users.length != 0){

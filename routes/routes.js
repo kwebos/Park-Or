@@ -1,6 +1,8 @@
 var chgpass = require('../config/chgpass');
 var register = require('../config/register');
 var login = require('../config/login');
+var parking = require('../config/parking.js');
+
 module.exports = function(app) {
 	app.get('/', function(req, res) {
 		res.end("Server Ready For Work");
@@ -24,9 +26,13 @@ module.exports = function(app) {
 	app.post('/location',function(req,res){
 		var longitude = req.body.longitude;
 		var latitude = req.body.latitude;
+		var newparking = new parking({
+				longitude: longitude,
+				latitude: latitude});			
+					newparking.save(function (err) {
 			console.log(longitude, latitude);	
-			res.json("ok");		
-	});
+			res.json("ok");});
+			});
 	app.post('/api/chgpass', function(req, res) {
 		var id = req.body.id;
 		var opass = req.body.oldpass;

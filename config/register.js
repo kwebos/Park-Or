@@ -1,7 +1,7 @@
 var crypto = require('crypto');
 var rand = require('csprng');
 var mongoose = require('mongoose');
-var user = require('./models.js');
+var user = require('./users.js');
 exports.register = function(email,password,callback) {
 	var x = email;
 	if((x.indexOf('@') != -1 && x.length > 1)){
@@ -19,8 +19,8 @@ exports.register = function(email,password,callback) {
 				var len = users.length;
 				if(len == 0){
 					newuser.save(function (err) {
-						console.log(x);
-						console.log(x.length);
+						// console.log(x);
+						// console.log(x.length);
 						callback({'response':"Sucessfully Registered"});
 					});
 				}else{
