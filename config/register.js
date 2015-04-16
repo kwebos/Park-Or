@@ -14,6 +14,7 @@ exports.register = function(email,password,callback) {
 				token: token,
 				email: email,
 				hashed_password: hashed_password,
+				name: "Fart",
 				salt :temp });
 			user.find({email: email},function(err,users){
 				var len = users.length;

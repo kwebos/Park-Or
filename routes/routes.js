@@ -2,6 +2,8 @@ var chgpass = require('../config/chgpass');
 var register = require('../config/register');
 var login = require('../config/login');
 var parking = require('../config/parking.js');
+var users = require('../config/users.js');
+//var checkpark = require('../config/checkpark');
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
@@ -26,13 +28,28 @@ module.exports = function(app) {
 	app.post('/location',function(req,res){
 		var longitude = req.body.longitude;
 		var latitude = req.body.latitude;
+		var token = req.body.token;
+		var user = new users({token: token});
+		console.log(user);
+		console.log(token);		
 		var newparking = new parking({
-				longitude: longitude,
-				latitude: latitude});			
-					newparking.save(function (err) {
-			console.log(longitude, latitude);	
-			res.json("ok");});
-			});
+			longitude: longitude,
+			latitude: latitude});
+			//userID: 1});
+		parking.find({longitude: longitude, latitude: latitude},function(err,parkings){
+			if(parkings.length != 0){											
+				console.log('already exists');
+				//console.log(longitude, latitude);
+				res.json("ok");				
+			}
+			else{	
+				newparking.save(function (err) {
+					console.log(longitude, latitude, "Damn");	
+					res.json("ok");});
+			}
+
+		});
+	});
 	app.post('/api/chgpass', function(req, res) {
 		var id = req.body.id;
 		var opass = req.body.oldpass;

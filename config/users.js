@@ -5,7 +5,9 @@ var userSchema = mongoose.Schema({
   email: String,
   hashed_password: String,
   salt : String,
-  temp_str:String
+  temp_str:String,
+  name: String,
+  carSize: String
 });
 
 //mongoose.connect('mongodb://localhost:27017/node-android');
