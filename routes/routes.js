@@ -25,6 +25,22 @@ module.exports = function(app) {
 			res.json(found);
 		});
 	});
+	app.post('/findParkings',function(req,res){
+		var sendback;
+		var longitude;
+		longitude = req.body.longitude;
+		console.log("longitude is: ",longitude);
+		parking.find({}, {longitude:1,latitude:1, _id:0},function(err,parkings){
+			if(parkings.length != 0){											
+				console.log(JSON.stringify(parkings));			
+				res.send(parkings);								
+				}
+			else
+			{
+				console.log("No Results");
+			}
+			});					
+	});
 	app.post('/location',function(req,res){
 		var longitude = req.body.longitude;
 		var latitude = req.body.latitude;
@@ -44,10 +60,17 @@ module.exports = function(app) {
 			}
 			else{	
 				newparking.save(function (err) {
-					console.log(longitude, latitude, "Damn");	
+					users.find({token: token}, function(err, user)
+					{
+						if(!err)
+						{
+							console.log(user[3]);
+							console.log("fuck yeah");
+						}
+					})
+					console.log(longitude, latitude, "Saved To DB");	
 					res.json("ok");});
 			}
-
 		});
 	});
 	app.post('/api/chgpass', function(req, res) {
