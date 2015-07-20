@@ -3,7 +3,6 @@ var register = require('../config/register');
 var login = require('../config/login');
 var parking = require('../config/parking.js');
 var users = require('../config/users.js');
-//var checkpark = require('../config/checkpark');
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
@@ -27,34 +26,41 @@ module.exports = function(app) {
 	});
 	app.post('/findParkings',function(req,res){
 		var sendback;
-		var longitude;
-		longitude = req.body.longitude;
-		console.log("longitude is: ",longitude);
-		parking.find({}, {longitude:1,latitude:1, _id:0},function(err,parkings){
+		var coords = [];
+    	coords[0] = req.body.longitude;
+		coords[1] = req.body.latitude;		
+		console.log("longitude is: ",longitude, "latitude is: ", latitude);
+		parking.find({ location :
+			{ $near :
+					coords,
+					$maxDistance : 2000
+				}
+			}
+		).exec(function(err,parkings){
+
 			if(parkings.length != 0){											
 				console.log(JSON.stringify(parkings));			
-				res.send(parkings);								
-				}
+				res.send({parkings: parkings});								
+			}
 			else
 			{
 				console.log("No Results");
+				res.send({longitude:null});
 			}
-			});					
+		});					
 	});
 	app.post('/location',function(req,res){
 		var longitude = req.body.longitude;
 		var latitude = req.body.latitude;
-		var token = req.body.token;
-		var user = new users({token: token});
-		console.log(user);
-		console.log(token);		
+		//var token = req.body.token;
+		//var user = new users({token: token});
+		//console.log(user);
+		//console.log(token);		
 		var newparking = new parking({
-			longitude: longitude,
-			latitude: latitude});
-			//userID: 1});
-		parking.find({longitude: longitude, latitude: latitude},function(err,parkings){
-			if(parkings.length != 0){											
-				console.log('already exists');
+			location: [longitude, latitude]});			
+	parking.find({location: [longitude, latitude]},function(err,parkings){
+		if(parkings.length != 0){											
+			console.log('already exists');
 				//console.log(longitude, latitude);
 				res.json("ok");				
 			}
@@ -72,7 +78,7 @@ module.exports = function(app) {
 					res.json("ok");});
 			}
 		});
-	});
+});
 	app.post('/api/chgpass', function(req, res) {
 		var id = req.body.id;
 		var opass = req.body.oldpass;
