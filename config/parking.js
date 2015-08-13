@@ -6,5 +6,5 @@ var parkingSchema = mongoose.Schema({
     index: '2d'},      // create the geospatial index    
 	userID: Schema.ObjectId,
 });
-mongoose.connect('mongodb://localhost:27017/node-android');
+//mongoose.connect('mongodb://localhost:27017/node-android');
 module.exports = mongoose.model('parking', parkingSchema);

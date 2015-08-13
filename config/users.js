@@ -12,4 +12,5 @@ var userSchema = mongoose.Schema({
 });
 
 //mongoose.connect('mongodb://localhost:27017/node-android');
+mongoose.connect('mongodb://kwebos:guy1234amir@ds033153.mongolab.com:33153/parkspoting');
 module.exports = mongoose.model('users', userSchema);

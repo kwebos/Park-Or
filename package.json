@@ -1,15 +1,29 @@
-
 {
   "name": "node-android",
   "version": "0.0.1",
   "main": "app.js",
   "dependencies": {
-    "express" : "~4.0.0",
-    "mongoose" : "~3.8.8",
-    "csprng" : "~0.1.1",
+    "express": "~4.0.0",
+    "mongoose": "~3.8.8",
+    "csprng": "~0.1.1",
     "connect": "~2.14.4",
-    "nodemailer":"~0.6.3",
-    "crypto":"~0.0.3",
-    "gravatar":"~1.0.6"
-  }
+    "nodemailer": "~0.6.3",
+    "crypto": "~0.0.3",
+    "gravatar": "~1.0.6"
+  },
+  "description": "ParkSpoting",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kwebos/Park-Or.git"
+  },
+  "author": "Guy Bar-On",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kwebos/Park-Or/issues"
+  },
+  "homepage": "https://github.com/kwebos/Park-Or"
 }
