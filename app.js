@@ -5,7 +5,7 @@ var express  = require('express');
 var connect  = require('connect');
 var app      = express();
 var port     = process.env.PORT || 8080;
-var cookieParser = require('cookie-parser');
+//var cookieParser = require('cookie-parser');
 // var myModule = require("./myModule");
 
 // myModule.getParkings({x:4, y: 3}, function(results) {
@@ -15,7 +15,7 @@ var cookieParser = require('cookie-parser');
 // Configuration
 app.use(express.static(__dirname + '/public'));
 app.use(connect.logger('dev'));
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(connect.json());
 app.use(connect.urlencoded());
 
