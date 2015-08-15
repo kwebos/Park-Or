@@ -45,7 +45,7 @@ module.exports = function(app) {
 			else
 			{
 				console.log("No Results");
-				res.send({longitude:null});
+				res.send({});
 			}
 		});					
 	});
