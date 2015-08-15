@@ -7,6 +7,7 @@ var users = require('../config/users.js');
 module.exports = function(app) {
 	app.get('/', function(req, res) {
 		res.end("Server Ready For Work");
+		console.log('ready for action');
 	});
 	app.post('/login',function(req,res){
 		var email = req.body.email;
