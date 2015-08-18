@@ -53,8 +53,8 @@ module.exports = function(app) {
 	app.post('/location',function(req,res){
 		var longitude = req.body.longitude;
 		var latitude = req.body.latitude;
-		//var token = req.body.token;
-		//var user = new users({token: token});
+		var token = req.body.token;
+		var user = new users({token: token});
 		//console.log(user);
 		//console.log(token);		
 		var newparking = new parking({
