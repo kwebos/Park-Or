@@ -12,6 +12,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(connect.logger('dev'));
 //app.use(cookieParser());
 app.use(connect.json());
+app.use(connect.urlencoded());
 //fuck this shit
 
 // load the cookie parsing middleware
@@ -19,4 +20,4 @@ app.use(connect.json());
 // Routes
 require('./routes/routes.js')(app);
 app.listen(port);
-console.log("On myBranch");
+console.log('The App runs on port ' + port);
