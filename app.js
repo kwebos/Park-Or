@@ -11,7 +11,7 @@ var cookieParser = require('cookie-parser');
 app.use(express.static(__dirname + '/public'));
 app.use(connect.logger('dev'));
 //app.use(cookieParser());
-app.use(connect.json());
+app.use(connect.json("edit"));
 //fuck this shit
 
 // load the cookie parsing middleware
