@@ -19,4 +19,4 @@ app.use(connect.json());
 // Routes
 require('./routes/routes.js')(app);
 app.listen(port);
-console.log("commit from master branch");
+console.log("commit from master branch edited");
